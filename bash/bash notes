@@ -1,0 +1,24 @@
+#bash notes
+#https://www.panix.com/~elflord/unix/bash-tute.html
+
+stdin = 0
+stdout = 1
+stderr = 2
+
+2 >&1 -- redirects error stream to standard output stream
+#https://stackoverflow.com/questions/24793069/what-does-do-in-bash
+
+cat -- print files to stdout
+
+> means redirection - send a whole completed file, overwiriting target if exist
+>> means send in addtion, append to target if it exists
+Both cases would create afile if they not exist.
+
+/dev/null -- redirects standard output to null device, discards information written on it. 
+
+
+Issue:
+(1) bash: [: too many argumenents
+	#https://stackoverflow.com/questions/13781216/meaning-of-too-many-arguments-error-from-if-square-brackets
+	It sees the output at multiple items than as one cohesive arguement. Try adding " " around the $Variable in
+	the if statement.

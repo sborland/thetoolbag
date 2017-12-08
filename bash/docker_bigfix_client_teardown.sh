@@ -6,9 +6,8 @@
 #ROOT_SERVER_ADDRESS=
 #OPERATING_SYSTEM=
 
-id=$(docker ps --filter "name=${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}" --format "{{.ID}}" 2>&1 | sed q)
-while [ -z != $id ]
-do
-      echo "Killing container id: "; docker kill $id
-      id=$(docker ps --filter "name=${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}" --format "{{.ID}}" 2>&1 | sed q)
-done
+id=$(docker ps --filter "name=${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}" --format "{{.ID}}" 2>&1)
+if [ -z != $id ]; then
+      echo "Stopping container id: "; docker stop $id; docker rm -f $id
+      #id=$(docker ps --filter "name=${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}" --format "{{.ID}}" 2>&1)
+fi

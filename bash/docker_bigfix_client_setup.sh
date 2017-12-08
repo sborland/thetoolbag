@@ -11,7 +11,7 @@
 
 #Checks if the Bigfix image for that particular server has already been created
 check=$(docker images --filter "label=rootServer=${ROOT_SERVER_ADDRESS}" --filter "label=OS=${OPERATING_SYSTEM}" --format "{{.Repository}} | {{.ID}}")
-if [ -z check ]; then
+if [ -z $check ]; then
     #If not, it pulls the DockerfileTemplate (found in tools repo)
     echo "Image does not exist. Creating Image..."
     curl https://raw.githubusercontent.com/sborland/tools/master/docker/Dockerfiles/bigfix_ubuntu/Dockerfile -o DockerfileTemplate
