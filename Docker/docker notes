@@ -1,0 +1,9 @@
+docker notes
+
+
+#https://coderwall.com/p/ewk0mq/stop-remove-all-docker-containers
+One liner to stop / remove all of Docker containers:
+docker rm -f $(docker ps -a -q)
+Docker images:
+docker rmi $(docker images -q)
+
