@@ -18,6 +18,8 @@ if [ -z $check ]; then
     #Replaces the sections in the Dockerfile with the OS name and the Bigfix root server addresses and build the image
     sed 's/_OPERATING.SYSTEM_/'"${OPERATING_SYSTEM}"'/g; s/_PUT.YOUR.RELAY.HERE.hostnameORfqdnORip_/'"${ROOT_SERVER_ADDRESS}"'/g' DockerfileTemplate > Dockerfile
     docker build -t ${OPERATING_SYSTEM}_${BIGFIX_SERVER_ADDRESS} .
+    #If the docker command is successful, remove dockerfile else exit with failure.
+    #http://sweetme.at/2013/10/02/how-to-test-for-the-success-of-previous-command-in-a-bash-shell-script/
     if (($?)); then
        echo "Failed to build docker image: ${OPERATING_SYSTEM}_${ROOT_SERVER_ADDRESS}" >&2
        exit 1
@@ -33,6 +35,7 @@ fi
 for (( i=1; i<=${NUMBER_OF_CONTAINERS}; i++))
     do
         docker container run -d -P --init --name="${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}_${JOB_NAME}_${BUILD_NUMBER}_$i" ${OPERATING_SYSTEM}_${BIGFIX_SERVER_ADDRESS}
+            #http://sweetme.at/2013/10/02/how-to-test-for-the-success-of-previous-command-in-a-bash-shell-script/
             if (($?)); then
                 echo "Failed to run docker container: ${ROOT_SERVER_ADDRESS}_${OPERATING_SYSTEM}_${JOB_NAME}_${BUILD_NUMBER}_$i"  >&2
                 exit 1
