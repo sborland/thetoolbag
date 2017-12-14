@@ -1,5 +1,7 @@
 docker notes
 
+#https://stackoverflow.com/questions/19537645/get-environment-variable-value-in-dockerfile
+Use ARG in Dockerfile to include environmental variables through optional parameters. 
 
 #https://coderwall.com/p/ewk0mq/stop-remove-all-docker-containers
 One liner to stop / remove all of Docker containers:
