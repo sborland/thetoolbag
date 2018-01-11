@@ -1,6 +1,6 @@
 #bash notes
 #https://www.panix.com/~elflord/unix/bash-tute.html
-
+http://etutorials.org/Linux+systems/red+hat+linux+9+professional+secrets/Part+II+Exploring+Red+Hat+Linux/Chapter+7+Red+Hat+Linux+Basics/Learning+the+Bash+Shell/
 stdin = 0
 stdout = 1
 stderr = 2
@@ -16,6 +16,8 @@ Both cases would create afile if they not exist.
 
 /dev/null -- redirects standard output to null device, discards information written on it. 
 
+run script on remote server (https://stackoverflow.com/questions/305035/how-to-use-ssh-to-run-a-shell-script-on-a-remote-machine)
+ssh root@MachineB 'bash -s' < local_script.sh
 
 Issue:
 (1) bash: [: too many argumenents
