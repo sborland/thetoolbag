@@ -10,7 +10,9 @@ group.add_argument('--file', action='store', help='Optional file location of jso
 group.add_argument('--get', action='store', help='Optional REST call for json data', type=str)
 args = parser.parse_args();
 
-
+#Walk down a list and print it's values
+#If the value is a dict, call traverseDict
+#If the value is another list, recurse with the value 
 def traverseList(listObj):
 	for item in listObj:
 		if type(item) is dict:
@@ -20,6 +22,9 @@ def traverseList(listObj):
 		else:
 			print item
 
+#Print the key value of every itme
+#If the value of the key is a list, call traveseList(value)
+#If the value of the key is another dict, recurse with the value
 def traverseDict(dictObj):
 	for key in dictObj:
 		if type(dictObj[key]) is dict:
